@@ -420,7 +420,7 @@ void PollJoystickButtons (void)
 	if(IN_JoyButtons() & (1 << MISTER_JOY_MENU))
 		control[ConsolePlayer].buttonstate[bt_esc] = true;
 
-	// The d-pad walks and turns like the arrow keys (it pans the paused
+	// The d-pad walks and strafes (it pans the paused
 	// automap). MiSTer also presses the d-pad for a pushed left stick, which
 	// has its own job here: a direction only counts while the stick rests on
 	// that axis.
@@ -439,9 +439,9 @@ void PollJoystickButtons (void)
 		if(abs(IN_GetJoyAxis(0)) < StickIdle)
 		{
 			if(hat & SDL_HAT_LEFT)
-				(pan ? cmd.ambuttonstate[bt_panleft] : cmd.buttonstate[bt_turnleft]) = true;
+				(pan ? cmd.ambuttonstate[bt_panleft] : cmd.buttonstate[bt_strafeleft]) = true;   // MiSTer: the d-pad strafes (patch_ecdpad.py)
 			if(hat & SDL_HAT_RIGHT)
-				(pan ? cmd.ambuttonstate[bt_panright] : cmd.buttonstate[bt_turnright]) = true;
+				(pan ? cmd.ambuttonstate[bt_panright] : cmd.buttonstate[bt_straferight]) = true;
 		}
 	}
 #endif
